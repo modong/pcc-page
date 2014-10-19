@@ -1,0 +1,151 @@
+
+Tagline
+
+Key things in tagline: PCC is not yet another TCP, PCC is great for performance out of box, PCC has flexibility beyond TCP architecture.
+
+Tagline 1:
+PCC is a new high performance and flexible congestion control architecture.
+Tagline 2: 
+PCC redesigns the 30-year-old TCP family congestion control architecture for consistent high performance and flexibility.
+Tagline 3:
+Use PCC and Get 10X performance improvement and flexibility beyond TCP architecture!
+Tagline 4:
+PCC: High Performance and Flexible Congestion Architecture for Modern Networks
+Tagline 5:
+PCC is a fundamental redesign of congestion control architecture, enabling consistent high performance in complex real network environment and flexibility beyond TCP family.
+Tagline 6 (for general non-scientific audience):
+PCC significantly speeds up data delivery between computers by fundamentally changing how data is delivered between computers.
+Tagline 7:
+PCC is a NoTCP transport control architecture designed for consistent high performance and flexibility.
+
+Tagline 8:
+PCC is a NoTCP congestion control architecture designed for consistent high performance and flexibility.
+Tagline 9:
+PCC is a NoTCP rate control architecture designed for consistent high performance and flexibility. 
+
+
+Front page
+
+Overview
+
+Over years, TCP becomes notorious for degraded data delivery performance, which a vast majority of Internet applications suffer from. Great efforts has been poured to proposing TCP modifications, which essentially ``patch'' for performance problems in specific network conditions such as high bandwidth long delay links, satellite links, data center, wireless and lossy links, and etc. Unfortunately, we are losing the battle against production network’s rapid evolution towards unprecedented complexity: The very fact that there are so many TCP variants suggests that each is only a point solution: they yield better performance under specific network conditions, but break in others. Worse, we found through real-world experiments that in many cases the performance of these special TCP variants is still quite far from optimal even in the network conditions towards which they are specially engineered.  We believe the TCP family has little hope to achieve consistent high performance due to a fundamental architectural deficiency: hard-wiring packet-level events to control responses without understanding the real performance result of its actions.
+
+
+We propose Performance-oriented Congestion Control (PCC), a new congestion control architecture in which each sender continuously observes what is the real meaningful resulting performance (utility) for its sending at certain rate. PCC then directly observes and compares different sending rates’ resulting utility and learns how to adjust its rate to improve empirical utility through a learning control algorithm. By avoiding any assumptions about the underlying potentially-complex network, PCC tracks the empirically optimal sending rate and thus achieves consistent high performance. PCC’s learning control is selfish in nature, but surprisingly, using a widely applicable utility function, competing PCC senders provably converge to a fair equilibrium. Across many real-world and challenging environments, PCC shows consistent and often 10× performance improvement, with better fairness and stability than TCP. Moreover, PCC provides a flexibility beyond TCP’s architecture: expressing different objectives of data transfer, e.g. throughput/latency, with different utility functions. Though being a significant shift in architecture PCC requires no router hardware support or new packet format to deploy.
+
+
+
+
+
+
+
+
+
+
+PCC Features at a Glance
+
+
+High Performance Out of Box (selected examples)
+
+
+Big Data Delivery over the Internet
+
+
+Based on our large-scale (we really mean it, look at Figure 2) experiment over the global commercial Internet, PCC can beat TCP CUBIC(default in linux kernel), by more than 10X on 44% of the tested sending receiving pairs. 
+
+
+We use several representative samples to compare how long does it take to deliver 100GB of data when using  PCC, TCP or just buy a flight ticket.
+
+
+
+
+
+
+
+
+
+
+
+Huge Data Delivery over Dedicated Network:
+
+
+Have Huge Data(10TB/delivery)? Own a fast network? Can provision dedicated network capacity? Don’t waste your capacity! 
+To test this scenario, we provisioned multiple fully dedicated 800Mbps links across GENI(http://www.geni.net/ ) Internet2 backbone. Here is the time comparison to delivery 10TB data.
+
+
+
+
+
+
+
+
+
+Satellite Network
+
+
+On a emulated satellite link based on real-world measurement, here is what PCC and TCP Hybla takes to deliver 1G data.
+
+ 
+
+
+
+
+Network is Dramatically Changing?
+
+
+We test TCP and PCC on a network path where available bandwidth, loss rate and RTT, are all changing every 5 seconds. 
+
+
+
+Each parameter is chosen independently from a uniform random distribution with bandwidth ranging from 10Mbps to 100Mbps, latency from 10ms to 100ms and loss rate from 0% to 1%. 
+
+
+PCC tracks the optimal rate closely. 
+
+
+
+
+
+
+Stable Convergence and Fairness
+
+
+PCC’s control algorithm is selfish in nature. Surprisingly, it can achieve fairness and much more stable convergence than TCP, which was designed with careful fairness and stability concern at first place.PCC’s stability can immediately translate to benefits for applications such as video streaming where stable rate in presence of congestion is desired
+
+
+
+
+ 
+
+The following is a typical dumbbell topology convergence experiment, 100Mbps, 30ms latency bottleneck. Four flow sequentially come in with 500s gap. Each flow send for 2000s.
+
+
+
+
+
+
+PCC stably converge to fairness point.
+
+
+
+TCP flows swing up and down, showing very high rate variance and unstable behavior.
+
+
+
+
+Potential of Flexibility 
+
+
+
+
+PCC has a feature outside the scope of the TCP family: PCC can explicitly express heterogenous data delivery objectives just by plugging in different utility functions, without the need for complex AQM mechanism, which is necessary to cater to different applications’ objective when using TCP.
+For example, “Bufferbloat + FQ + TCP” is better for throughput-hungry applications but “Codel + FQ + TCP” is much better for latency-sensitive interactive applications. In a recent paper describing this deficiency of TCP by Sivaraman et.al, an interactive flow is defined as a long-running flow that has the objective of maximizing its throughput-delay ratio, called the power. To make our point, we take this scenario and show with PCC and a latency sensitive utility function, “Bufferbloat + FQ” and “Codel + FQ” render no power difference for interactive flows and with either, PCC achieves higher power than “TCP + Codel + FQ”. 
+
+
+
+
+
+The above is only a selected overview of PCC features. 
+Know more in the paper.
+Play with PCC User-space Prototype Implementation.
+
