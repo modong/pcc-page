@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Clean Blog - Sample Post</title>
+    <title>Performance-oriented Congestion Control</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -68,15 +68,26 @@
 
                     <h2 class="section-heading">High Perforamance Out of Box</h2>
                     <h4 class="post-heading">Selected Examples</h4>
-                    <h3 class="section-heading">Big Data Delivery Over Internet</h2>
-                    <p>As we got further and further away, it [the Earth] diminished in size. Finally it shrank to the size of a marble, the most beautiful you can imagine. That beautiful, warm, living object looked so fragile, so delicate, that if you touched it with a finger it would crumble and fall apart. Seeing this has to change a man.</p>
+                    <h3 class="subheading">Big Data Delivery Over Internet</h2>
+                    <p>Based on our large-scale (we really mean it, look at Figure 2) experiment over the global commercial Internet, PCC can beat TCP CUBIC(default in linux kernel), by more than 10X on 44% of the tested sending receiving pairs. </p>
 
-                    <a href="#">
-                        <img class="img-responsive" src="img/post-sample-image.jpg" alt="">
-                    </a>
+                        <img class="img-responsive" src="img/planet.jpg" alt="">
 
-                    <span class="caption text-muted">To go places and do things that have never been done before – that’s what living is all about.</span>
-                    <p>Placeholder text by <a href="http://spaceipsum.com/">Space Ipsum</a>. Photographs by <a href="https://www.flickr.com/photos/nasacommons/">NASA on The Commons</a>.</p>
+                    <span class="caption text-muted">The scale of our global Internet experiments and the improvement of PCC over TCP CUBIC</span>
+                    <p>We use several representative samples to compare how long does it take to deliver 100GB of data when using  PCC, TCP or just <strong>buy a flight ticket</strong>.</p>
+                        <img class="img-responsive" src="img/planet_chart.jpg" alt="">
+                    <h3 class="subheading">Huge Data Delivery over Dedicated Network</h2>
+                    <p>
+                    Have Huge Data(10TB/delivery)? Own a fast network? Can provision dedicated network capacity? Don’t waste your capacity! 
+                    To test this scenario, we provisioned multiple fully dedicated 800Mbps links across <a href="www.geni.net">GENI</a> Internet2 backbone. Here is the time comparison to delivery 10TB data.
+                    </p>
+                        <img class="img-responsive" src="img/GENI_chart.jpg" alt="">
+                    <h3 class="subheading"> Satellite Internet</h3>
+                    <p>
+                    On an emulated WINDS satellite Internet connection based on real-world measurement, here is what PCC and TCP Hybla takes to deliver 1G data.
+                    </p>
+
+
                 </div>
             </div>
         </div>
