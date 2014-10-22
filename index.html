@@ -104,9 +104,18 @@
                     The following is a typical dumbbell topology convergence experiment, 100Mbps, 30ms latency bottleneck. Four flow sequentially come in with 500s interval. Each flow sends for 2000s.
                     </p>
                     <p> PCC converges to fairness point stably</p>
-                    <img class="img-responsive" src="img/convergece_BBCC_FIFO.jpg" alt="">
+                    <img class="img-responsive" src="img/covergence_BBCC_FIFO.jpg" alt="">
                     <p> TCP shows very unstable behavior and high rate variance</p>
-                    <img class="img-responsive" src="img/convergece_TCP_FIFO.jpg" alt="">
+                    <img class="img-responsive" src="img/covergence_TCP_FIFO.jpg" alt="">
+                    <h2 class="section-heading">Potential of Flexibility</h2>
+                    <p>
+
+                    PCC has a feature outside the scope of the TCP family: PCC can explicitly express heterogenous data delivery objectives just by plugging in different utility functions, without the need for complex AQM mechanism, which is necessary to cater to different applications’ objective when using TCP.
+                    For example, “Bufferbloat + FQ + TCP” is better for throughput-hungry applications but “Codel + FQ + TCP” is much better for latency-sensitive interactive applications that have the objective of maximizing its throughput-delay ratio, called the power. To make our point, we take this scenario and show with PCC and a latency sensitive utility function, “Bufferbloat + FQ” and “Codel + FQ” render no power difference for interactive flows and with either, PCC achieves higher power than “TCP + Codel + FQ”. 
+                    </p>
+
+                    <img class="img-responsive" src="img/codel.jpg" alt="">
+
 
                 </div>
             </div>
