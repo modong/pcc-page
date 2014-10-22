@@ -72,7 +72,6 @@
 
 
                     <h2 class="section-heading">High Perforamance Out of Box</h2>
-                    <h4 class="post-heading">Selected Examples</h4>
                     <h3 class="subheading">Big Data Delivery Over Internet</h2>
                     <p>Based on our large-scale (we really mean it, look at Figure 2) experiment over the global commercial Internet, PCC can beat TCP CUBIC(default in linux kernel), by more than 10X on 44% of the tested sending receiving pairs. </p>
 
@@ -98,7 +97,16 @@
                     Comapring to TCP variants, PCC tracks the optimal rate closely. 
                     </p>
                     <img class="img-responsive" src="img/DynamicNetwork.jpg" alt="">
-
+                    <span class="caption text-muted">PCC tracks optimal rate closely</span>
+                    <h2 class="section-heading">Stable Convergence and Fairness</h2>
+                    <p>
+                    PCC’s control algorithm is selfish in nature. Surprisingly, it can achieve fairness and much more stable convergence than TCP.
+                    The following is a typical dumbbell topology convergence experiment, 100Mbps, 30ms latency bottleneck. Four flow sequentially come in with 500s interval. Each flow sends for 2000s.
+                    </p>
+                    <p> PCC converges to fairness point stably</p>
+                    <img class="img-responsive" src="img/convergece_bbcc_FIFO.jpg" alt="">
+                    <p> TCP shows very unstable behavior and high rate variance</p>
+                    <img class="img-responsive" src="img/convergece_tcp_FIFO.jpg" alt="">
 
                 </div>
             </div>
