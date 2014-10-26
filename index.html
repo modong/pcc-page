@@ -42,14 +42,14 @@
     
     </p>
                         <center><img class="img-responsive" src="img/logo-flat.jpg" alt="" width="8%"></center>
-    <header class="post-header">
+    <header class="page-header">
         <div class="container">
             <div class="row">
                 <div class="col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="subheading">
+                    <div class="page-heading">
                         <h1>
                             Performance-oriented Congestion Control</h1>
-                        <span class="post-subtitle"> Dramatically higher performance data delivery with a flexible transport architecture </span>
+                        <span class="post-subtitle"> <strong> Dramatically higher performance data delivery with a flexible transport architecture </strong> </span>
                     </div>
                 </div>
             </div>
@@ -64,11 +64,23 @@
                 <p class="text-justify">TCP family has failed to achieve consistent high performance in face of the complex production networks: even sepcial TCP variants are often 10x away from optimal performance. This is due to TCP family's fundamental architectural deficiency: hardwiring packet-level event to control responses without understanding the real performance result of its action. </p>
                 <p class="text-justify"> We propose Performance-oriented Congestion Control (PCC), a new congestion control architecture with consistent high performance and flexibility in its design. Each PCC sender continuously observes meaningful performance metrics (throughput, latency, loss rate) and compares different sending rates’ resulting utility (a function of performance metrics describing data delivery objectives) and learns how to adjust its rate to really improve empirical utility through a learning control algorithm.</p>
 
-<p class="text-center">
+                <p class="text-center">
+<a href="http://arxiv.org/pdf/1409.7092v3.pdf"><button type="button" class="btn btn-primary btn-lg">Read Full Paper</button></a>
+</p>
+                <!--<p class="text-center">
 <a href="http://arxiv.org/pdf/1409.7092v3.pdf"><button type="button" class="btn btn-primary btn-lg">Read Paper</button></a>
 <a href="https://www.youtube.com/watch?v=dOYDGFG0R1Y"><button type="button" class="btn btn-info btn-lg">See Demo</button></a>
 <a href="https://github.com/modong/pcc"><button type="button" class="btn btn-success btn-lg">Run Code</button></a>
-</p>
+</p> -->
+<h2 class="section-heading">Compare PCC and TCP in Action</h2>
+<div class="embed-responsive embed-responsive-16by9">
+     <iframe class="embed-responsive-item" src="http://www.youtube.com/embed/dOYDGFG0R1Y?feature=player_detailpage"></iframe>
+</div>
+<h2 class="section-heading" align="center">Use PCC</h2>
+          <div style="font-size: 100px; line-height: 1.5em;" align="center">
+              <a href="https://github.com/modong/pcc"> <i class ="fa fa-github"></i> </a>
+                                    </div>
+
     <h2 class="section-heading">TCP's Architectural Deficiency</h2>
     <img class="img-responsive" src="img/tcp_arch.jpg" alt="">
     <span class="caption text-muted">TCP family 's hardwired mapping control architecture</span>
