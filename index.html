@@ -38,14 +38,18 @@
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
     <!-- <header class="post-header" style="background-image: url('img/p.jpg')">-->
+    <p>
+    
+    </p>
+                        <center><img class="img-responsive" src="img/logo-flat.jpg" alt="" width="8%"></center>
     <header class="post-header">
         <div class="container">
             <div class="row">
                 <div class="col-lg-offset-2 col-md-10 col-md-offset-1">
-                    <div class="post-heading">
-                        <h1>Performance-oriented Congestion Control</h1>
-                        <img class="img-responsive" src="img/logo.jpg" alt="">
-                        <span class="meta">Mo Dong, Qingxi Li, Doron Zarchy, P. Brighten Godfrey, Michael Schapira</span>
+                    <div class="subheading">
+                        <h1>
+                            Performance-oriented Congestion Control</h1>
+                        <span class="post-subtitle"> Dramatically higher performance data delivery with a flexible transport architecture </span>
                     </div>
                 </div>
             </div>
@@ -57,8 +61,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <p class="text-justify">TCP family has failed to achieve consistent high performance in face of the complex modern network: even sepcial TCP variants are often 10x away from optimal performance. This is due to TCP family's fundamental architectural deficiency: hardwiring packet-level event to control responses without understanding the real performance result of its action. </p>
-                <p class="text-justify"> We propose Performance-oriented Congestion Control (PCC), a new congestion control architecture with consistent high performance and flexibility in its design. Each PCC sender continuously observes meaningful performance metrics(throughput, latency, loss rate) and compares different sending rates’ resulting utility (a function of performance metrics describing data delivery objectives) and learns how to adjust its rate to really improve empirical utility through a learning control algorithm.</p>
+                <p class="text-justify">TCP family has failed to achieve consistent high performance in face of the complex production networks: even sepcial TCP variants are often 10x away from optimal performance. This is due to TCP family's fundamental architectural deficiency: hardwiring packet-level event to control responses without understanding the real performance result of its action. </p>
+                <p class="text-justify"> We propose Performance-oriented Congestion Control (PCC), a new congestion control architecture with consistent high performance and flexibility in its design. Each PCC sender continuously observes meaningful performance metrics (throughput, latency, loss rate) and compares different sending rates’ resulting utility (a function of performance metrics describing data delivery objectives) and learns how to adjust its rate to really improve empirical utility through a learning control algorithm.</p>
 
 <p class="text-center">
 <a href="http://arxiv.org/pdf/1409.7092v3.pdf"><button type="button" class="btn btn-primary btn-lg">Read Paper</button></a>
