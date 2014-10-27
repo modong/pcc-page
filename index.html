@@ -121,7 +121,6 @@
     </p>
 
     <a name="performance"><h2 class="section-heading">High Perforamance Out of Box</h2></a>
-    <p>With no tweak of its control algorithm, PCC achieves consistent high performance and significantly beats specially engineered TCPs on various network environments: (a.) the wild and complex global commercial Internet (often more than 10X the throughput of TCP CUBIC); (b.) inter-data center networks (5.23X vs. TCP Illinois); (c.) emulated satellite Internet links (17X vs TCP Hybla); (d.) unreliable lossy links (10-37X vs Illinois); (e.) unequal RTT of competing senders (an architectural cure to RTT unfairness); (f.) shallow buffered bottleneck links (up to 45X higher performance, or 13X less buffer to reach 90% throughput); (g.) rapidly changing networks (14X vs CUBIC, 5.6X vs Illinois). PCC performs similar to ICTCP in (h.) incast scenario in data centers. We present several selected examples:</p>
                     <h3 class="subheading">Big Data Delivery Over Internet</h2>
                     <p>Based on our large-scale experiments over the global commercial Internet, PCC can beat TCP CUBIC (the Linux kernel default) by more than 10X on 44% of the tested sending-receiving pairs. </p>
 
@@ -148,6 +147,9 @@
                     </p>
                     <img class="img-responsive" src="img/DynamicNetwork.jpg" alt="">
                     <span class="caption text-muted">PCC tracks optimal rate closely</span>
+                    <h3 class="subheading"> More in paper</h3>
+
+    <p>We have more experiements demostrating PCC's consistent high performance including: (a.) unreliable lossy links (10-37X vs Illinois); (b.) unequal RTT of competing senders (an architectural cure to RTT unfairness); (c.) shallow buffered bottleneck links (up to 45X higher performance, or 13X less buffer to reach 90% throughput); (d.) PCC performs similar to ICTCP in incast scenario in data centers.</p>
                     <a name="convergence"><h2 class="section-heading">Stable Convergence and Fairness</h2></a>
                     <p>
                     PCC’s control algorithm is selfish in nature. Surprisingly, it can achieve fairness and much more stable convergence than TCP.
