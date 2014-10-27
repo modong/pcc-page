@@ -165,7 +165,8 @@
                     PCC has a feature outside the scope of the TCP family: PCC can explicitly express heterogenous data delivery objectives just by plugging in different utility functions, without the need for complex AQM mechanisms, which is necessary to cater to different applications’ objective when using TCP.
                     </p>
                     <p>
-                    For example, “Bufferbloat + FQ + TCP” is better for throughput-hungry applications but “Codel + FQ + TCP” is much better for latency-sensitive interactive applications that have the objective of maximizing its throughput-delay ratio, called the power. To make our point, we take this scenario and show with PCC and a latency sensitive utility function, “Bufferbloat + FQ” and “Codel + FQ” render no power difference for interactive flows and with either, PCC achieves higher power than “TCP + Codel + FQ”.
+                    Consider a data from of an interactive application which cares about throughput and also latency, with the objective of optimizing throughput/latency, known as "power". When using TCP to deliver data and there is large amount of buffer in the network, the performance is bad due to the fact that TCP fills the buffer and causing increased latency. To increase "power", in-network active queue management mechanisms like Codel has to be deployed to actively chop the queue off.
+                    When using PCC and plugging in the utility function of throughput/latency, PCC will achieve high power, as shown in the following figure, even when there is no AQM present. Moreover, PCC without AQM can achieve even better power than TCP with Codel.
                     </p>
                     <img class="img-responsive" src="img/codel.jpg" alt="">
 
