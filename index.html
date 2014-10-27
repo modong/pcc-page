@@ -116,6 +116,7 @@
     <p class="text-justify"> In PCC each sender continuously observes meaningful performance and compares different sending rates’ resulting utility and learns how to adjust its rate to improve empirical utility through a learning control algorithm. By avoiding any assumptions about the underlying potentially-complex network, PCC tracks the empirically optimal sending rate and thus achieves consistent high performance. PCC shows consistent and often 10× performance improvement, with better fairness and stability than TCP. Moreover, PCC provides a flexibility beyond TCP’s architecture: expressing different objectives of data transfer, e.g. throughput/latency, with different utility functions. PCC requires no router hardware support or new packet format to deploy.</p>
 
     <a name="performance"><h2 class="section-heading">High Perforamance Out of Box</h2></a>
+    <p>With no tweak of its control algorithm, PCC achieves consistent high performance and significantly beats specially engineered TCPs on various network environments: (a.) the wild and complex global commercial Internet (often more than 10X the throughput of TCP CUBIC); (b.) inter-data center networks (5.23X vs. TCP Illinois); (c.) emulated satellite Internet links (17X vs TCP Hybla); (d.) unreliable lossy links (10-37X vs Illinois); (e.) unequal RTT of competing senders (an architectural cure to RTT unfairness); (f.) shallow buffered bottleneck links (up to 45X higher performance, or 13X less buffer to reach 90% throughput); (g.) rapidly changing networks (14X vs CUBIC, 5.6X vs Illinois). PCC performs similar to ICTCP in (h.) incast scenario in data centers. We present several selected examples:</p>
                     <h3 class="subheading">Big Data Delivery Over Internet</h2>
                     <p>Based on our large-scale experiments over the global commercial Internet, PCC can beat TCP CUBIC (the Linux kernel default) by more than 10X on 44% of the tested sending-receiving pairs. </p>
 
@@ -160,14 +161,14 @@
                     </p>
                     <img class="img-responsive" src="img/codel.jpg" alt="">
 
-                    one sentence saying all the experiment we have
+
+
 
 
                 </div>
             </div>
         </div>
     </article>
-
     <hr>
 
 
