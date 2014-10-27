@@ -70,7 +70,7 @@
 <a href="https://www.youtube.com/watch?v=dOYDGFG0R1Y"><button type="button" class="btn btn-info btn-lg">See Demo</button></a>
 <a href="https://github.com/modong/pcc"><button type="button" class="btn btn-success btn-lg">Run Code</button></a>
 </p> -->
-<a name="readmore"><p align="center"><strong>Read More...</strong></p></a>
+<p align="center"><strong>Read More...</strong></p>
 <div class="list-group">
     <a href="#paper" align="center" class="list-group-item">Paper</a>
     <a href="#compare" align="center" class="list-group-item">Compare PCC and TCP in Action</a>
@@ -93,13 +93,13 @@
     </a>
     <a name="compare"><h2 class="section-heading">Compare PCC and TCP in Action</h2></a>
 <div class="embed-responsive embed-responsive-16by9">
-     <iframe class="embed-responsive-item" src="http://www.youtube.com/embed/dOYDGFG0R1Y?feature=player_detailpage"></iframe>
+     <iframe class="embed-responsive-item" src="http://www.youtube.com/embed/l0qYs9BL7Zk?feature=player_detailpage"></iframe>
 </div>
 
 
 <a name="usepcc"><h2 class="section-heading">Use PCC</h2></a>
 <p>
-The PCC architecture requires only sender-side changes to TCP’s rate control algorithm (with no changes to the host-to-host communication protocol), but this  <a href="https://github.com/modong/pcc"> prototype </a> is implemented in userspace on top of UDP.</p> 
+The PCC architecture requires only sender-side changes to TCP’s rate control algorithm (with no changes to the host-to-host communication protocol), but this  <a href="https://github.com/modong/pcc"> prototype </a> is implemented in userspace on top of UDP.</p>
         <a href="https://github.com/modong/pcc">
           <div style="font-size: 100px; margin-top:-40px; margin-bottom:-60px" align="center">
 <i class ="fa fa-github"></i>
@@ -118,11 +118,11 @@ The PCC architecture requires only sender-side changes to TCP’s rate control a
     <a name="pcc_arch"><h2 class="section-heading">How PCC Works</h2></a>
     <img class="img-responsive" src="img/pcc_arch.jpg" alt="">
     <span class="caption text-muted">PCC's control architecture is based on emprical observed performancee</span>
-    <p class="text-justify"> 
+    <p class="text-justify">
     PCC rises from where TCP fails, by associating a control action (change of sending rate) directly with its effect on real performance. For example, when a sender changes its rate to r and gets SACKs after sending at this rate, instead of trigging any predefined control action, PCC aggregates these packet-level events into meaningful performance metrics (throughput, loss rate, latency, etc.) and combines them into a numerical value u via a utility function describing objectives like “high throughput and low loss rate”. With this capability of understanding the real performance result of a particular sending rate, PCC then directly observes and compares different sending rates’ resulting utility and learns how to adjust its rate to improve empirical utility through a learning control algorithm. By avoiding any assumptions about the underlying potentially-complex network, PCC tracks the empirically optimal sending rate and thus achieves consistent high performance.
     </p>
 
-    <a name="performance"><h2 class="section-heading">High Perforamance Out of the Box</h2></a>
+    <a name="performance"><h2 class="section-heading">High Performance Out of the Box</h2></a>
                     <h3 class="subheading">Big Data Delivery Over Internet</h2>
                     <p>Based on our large-scale experiments over the global commercial Internet, PCC can beat TCP CUBIC (the Linux kernel default) by more than 10X on 44% of the tested sending-receiving pairs. </p>
 
@@ -183,12 +183,6 @@ The PCC architecture requires only sender-side changes to TCP’s rate control a
     </article>
     <hr>
 
-
-<span id="top-link-block" class="hidden">
-    <a href="#readmore" class="well well-sm"  onclick="$('html,body').animate({scrollTop:700},'slow');return false;">
-        <i class="glyphicon glyphicon-chevron-up"></i> Back to Top
-    </a>
-</span><!-- /top-link-block -->
 
     <!-- Footer -->
     <footer>
