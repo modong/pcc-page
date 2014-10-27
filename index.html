@@ -108,12 +108,17 @@
                   <a name="tcp_arch"><h2 class="section-heading">Why TCP's Architecture is Broken</h2></a>
     <img class="img-responsive" src="img/tcp_arch.jpg" alt="">
     <span class="caption text-muted"> The TCP family's hardwired mapping control architecture</span>
-    <p class="text-justify">Over the years, TCP has become notorious for degraded data delivery performance. Great effort has been poured to proposing TCP modifications, which essentially ``patch'' for performance problems in specific network conditions. Unfortunately, the very fact that there are so many TCP variants suggests that each is only a point solution. Worse, in many cases the performance of these special TCP variants is still quite far from optimal. TCP fails to achieve consistent high performance due to a fundamental architectural deficiency: hard-wiring packet-level events to control responses with often-invalid assumptions about the network and without understanding its control actions impact on meaningful performance.</p>
+    <p class="text-justify">
+    Though using different control algorithms, all TCP's variants share the same <i>hardwired mapping</i> rate control architecture: hardwiring certain <i>predefined packet-level events </i> to certain <i>predefined control responses</i>.
+    The design rationale behind the hardwired mapping architecture is to make assumptions about the packet-level events. When it sees a packet-level event(e.g. packet loss), TCP assumes the network is in a certain state (e.g. congestion) and tries to optimize performance by triggering a predefined control behavior(e.g. halving window size) as the response to that assumed state. In real networks, assumptions fail but TCP still mechanically carries out the mismatched control response, resulting in severely degraded performance and very unfortunately, without seeing its control action’s actual harm on performance.
+    </p>
 
     <a name="pcc_arch"><h2 class="section-heading">How PCC Works</h2></a>
     <img class="img-responsive" src="img/pcc_arch.jpg" alt="">
     <span class="caption text-muted">PCC's control architecture is based on emprical observed performancee</span>
-    <p class="text-justify"> In PCC each sender continuously observes meaningful performance and compares different sending rates’ resulting utility and learns how to adjust its rate to improve empirical utility through a learning control algorithm. By avoiding any assumptions about the underlying potentially-complex network, PCC tracks the empirically optimal sending rate and thus achieves consistent high performance. PCC shows consistent and often 10× performance improvement, with better fairness and stability than TCP. Moreover, PCC provides a flexibility beyond TCP’s architecture: expressing different objectives of data transfer, e.g. throughput/latency, with different utility functions. PCC requires no router hardware support or new packet format to deploy.</p>
+    <p class="text-justify"> 
+    PCC rises from where TCP fails, by associating a control action (change of sending rate) directly with its effect on real performance. For example, when a sender changes its rate to r and gets SACKs after sending at this rate, instead of trigging any predefined control action, PCC aggregates these packet-level events into meaningful performance metrics (throughput, loss rate, latency, etc.) and combines them into a numerical value u via a utility function describing objectives like “high throughput and low loss rate”. With this capability of understanding the real performance result of a particular sending rate, PCC then directly observes and compares different sending rates’ resulting utility and learns how to adjust its rate to improve empirical utility through a learning control algorithm. By avoiding any assumptions about the underlying potentially-complex network, PCC tracks the empirically optimal sending rate and thus achieves consistent high performance.
+    </p>
 
     <a name="performance"><h2 class="section-heading">High Perforamance Out of Box</h2></a>
     <p>With no tweak of its control algorithm, PCC achieves consistent high performance and significantly beats specially engineered TCPs on various network environments: (a.) the wild and complex global commercial Internet (often more than 10X the throughput of TCP CUBIC); (b.) inter-data center networks (5.23X vs. TCP Illinois); (c.) emulated satellite Internet links (17X vs TCP Hybla); (d.) unreliable lossy links (10-37X vs Illinois); (e.) unequal RTT of competing senders (an architectural cure to RTT unfairness); (f.) shallow buffered bottleneck links (up to 45X higher performance, or 13X less buffer to reach 90% throughput); (g.) rapidly changing networks (14X vs CUBIC, 5.6X vs Illinois). PCC performs similar to ICTCP in (h.) incast scenario in data centers. We present several selected examples:</p>
@@ -161,6 +166,8 @@
                     </p>
                     <img class="img-responsive" src="img/codel.jpg" alt="">
 
+    <a name="contact"><h2 class="section-heading">Contact</h2></a>
+    <p>Mo Dong, Qingxi Li, Doron Zarchy, P. Brighten Godfrey, Michael Schapira</p>
 
 
 
