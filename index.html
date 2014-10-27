@@ -16,6 +16,7 @@
 
     <!-- Custom CSS -->
     <link href="css/clean-blog.min.css" rel="stylesheet">
+    <link href="css/additional.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -39,7 +40,7 @@
     <!-- Set your background image for this header on the line below. -->
     <!-- <header class="post-header" style="background-image: url('img/p.jpg')">-->
     <p>
-    
+
     </p>
                         <center><img class="img-responsive" src="img/logo-flat.jpg" alt="" width="8%"></center>
     <header class="page-header">
@@ -69,7 +70,18 @@
 <a href="https://www.youtube.com/watch?v=dOYDGFG0R1Y"><button type="button" class="btn btn-info btn-lg">See Demo</button></a>
 <a href="https://github.com/modong/pcc"><button type="button" class="btn btn-success btn-lg">Run Code</button></a>
 </p> -->
-<h2 class="section-heading">Papers</h2>
+<a name="readmore"><p align="center"><strong>Read More...</strong></p></a>
+<div class="list-group">
+    <a href="#paper" align="center" class="list-group-item">Paper</a>
+    <a href="#compare" align="center" class="list-group-item">Compare PCC and TCP in Action</a>
+    <a href="#usepcc" align="center" class="list-group-item">Use PCC</a>
+    <a href="#tcp_arch" align="center" class="list-group-item">Why TCP's Architecture is Broken</a>
+    <a href="#pcc_arch" align="center" class="list-group-item">How PCC Works</a>
+    <a href="#performance" align="center" class="list-group-item">High Performance Out of Box</a>
+    <a href="#convergence" align="center" class="list-group-item">Stable Convergence and Fairness</a>
+    <a href="#flexible" align="center" class="list-group-item">Flexible Performance Objectives</a>
+</div>
+<a name="paper"><h2 class="section-heading">Papers</h2></a>
 <a href="http://arxiv.org/pdf/1409.7092v3.pdf">
     <p style="font-size:20px; margin-bottom:-30px"><strong>PCC: Re-architecting Congestion Control for Consistent High Performance </strong></br>
     </p>
@@ -78,30 +90,32 @@
     <p style="font-size:17px; margin-bottom:-30px" align="center">*University of Illinois at Urbana Champaign</p>
     <p style="font-size:17px; margin-bottom:-30px" align="center">**Hebrew University of Jeruselem</p>
     </a>
-<h2 class="section-heading">Compare PCC and TCP in Action</h2>
+    <a name="compare"><h2 class="section-heading">Compare PCC and TCP in Action</h2></a>
 <div class="embed-responsive embed-responsive-16by9">
      <iframe class="embed-responsive-item" src="http://www.youtube.com/embed/dOYDGFG0R1Y?feature=player_detailpage"></iframe>
 </div>
-<h2 class="section-heading">Use PCC</h2>
+
+
+<a name="usepcc"><h2 class="section-heading">Use PCC</h2></a>
 <p> <a href="https://github.com/modong/pcc">A prototype of PCC</a> is available for download and can be used to deliver data. The userspace implementation is on UDP, but the future version will be sender-only change in TCP's rate control core without changing the protocol.</p>
-        <a href="https://github.com/modong/pcc"> 
+        <a href="https://github.com/modong/pcc">
             <span align="center" class="caption">Goto Github Repo</span>
           <div style="font-size: 100px; line-height: 1.5em;" align="center">
 <i class ="fa fa-github"></i>
                 </div>
                   </a>
 
-    <h2 class="section-heading">Why TCP's Architecture is Broken</h2>
+                  <a name="tcp_arch"><h2 class="section-heading">Why TCP's Architecture is Broken</h2></a>
     <img class="img-responsive" src="img/tcp_arch.jpg" alt="">
     <span class="caption text-muted"> The TCP family's hardwired mapping control architecture</span>
     <p class="text-justify">Over the years, TCP has become notorious for degraded data delivery performance. Great effort has been poured to proposing TCP modifications, which essentially ``patch'' for performance problems in specific network conditions. Unfortunately, the very fact that there are so many TCP variants suggests that each is only a point solution. Worse, in many cases the performance of these special TCP variants is still quite far from optimal. TCP fails to achieve consistent high performance due to a fundamental architectural deficiency: hard-wiring packet-level events to control responses with often-invalid assumptions about the network and without understanding its control actions impact on meaningful performance.</p>
 
-    <h2 class="section-heading">How PCC Works</h2>
+    <a name="pcc_arch"><h2 class="section-heading">How PCC Works</h2></a>
     <img class="img-responsive" src="img/pcc_arch.jpg" alt="">
     <span class="caption text-muted">PCC's control architecture is based on emprical observed performancee</span>
     <p class="text-justify"> In PCC each sender continuously observes meaningful performance and compares different sending rates’ resulting utility and learns how to adjust its rate to improve empirical utility through a learning control algorithm. By avoiding any assumptions about the underlying potentially-complex network, PCC tracks the empirically optimal sending rate and thus achieves consistent high performance. PCC shows consistent and often 10× performance improvement, with better fairness and stability than TCP. Moreover, PCC provides a flexibility beyond TCP’s architecture: expressing different objectives of data transfer, e.g. throughput/latency, with different utility functions. PCC requires no router hardware support or new packet format to deploy.</p>
 
-                    <h2 class="section-heading">High Perforamance Out of Box</h2>
+    <a name="performance"><h2 class="section-heading">High Perforamance Out of Box</h2></a>
                     <h3 class="subheading">Big Data Delivery Over Internet</h2>
                     <p>Based on our large-scale experiments over the global commercial Internet, PCC can beat TCP CUBIC (the Linux kernel default) by more than 10X on 44% of the tested sending-receiving pairs. </p>
 
@@ -112,7 +126,7 @@
                         <img class="img-responsive" src="img/planet_chart.jpg" alt="">
                     <h3 class="subheading">Huge Data Delivery over Dedicated Network</h2>
                     <p>
-                    Have huge data (10TB/delivery)? Own a fast network? Can provision dedicated network capacity? Don’t waste your capacity! 
+                    Have huge data (10TB/delivery)? Own a fast network? Can provision dedicated network capacity? Don’t waste your capacity!
                     To test this scenario, we provisioned multiple fully dedicated 800Mbps links across the <a href="www.geni.net">GENI</a> Internet2 backbone. Here is the time comparison to deliver 10TB data.
                     </p>
                         <img class="img-responsive" src="img/GENI_chart.jpg" alt="">
@@ -123,12 +137,12 @@
                         <img class="img-responsive" src="img/satellite_full.jpg" alt="">
                     <h3 class="subheading"> Rapidly Changing Networks</h3>
                     <p>
-                    We tested TCP and PCC on a network path where available bandwidth, loss rate and RTT, are all changing every 5 seconds, with bandwidth ranging from 10Mbps to 100Mbps, latency from 10ms to 100ms and loss rate from 0% to 1%. 
-                    Comapred to TCP variants, PCC tracks the optimal rate closely. 
+                    We tested TCP and PCC on a network path where available bandwidth, loss rate and RTT, are all changing every 5 seconds, with bandwidth ranging from 10Mbps to 100Mbps, latency from 10ms to 100ms and loss rate from 0% to 1%.
+                    Comapred to TCP variants, PCC tracks the optimal rate closely.
                     </p>
                     <img class="img-responsive" src="img/DynamicNetwork.jpg" alt="">
                     <span class="caption text-muted">PCC tracks optimal rate closely</span>
-                    <h2 class="section-heading">Stable Convergence and Fairness</h2>
+                    <a name="convergence"><h2 class="section-heading">Stable Convergence and Fairness</h2></a>
                     <p>
                     PCC’s control algorithm is selfish in nature. Surprisingly, it can achieve fairness and much more stable convergence than TCP.
                     The following is a typical dumbbell topology convergence experiment, 100Mbps, 30ms latency bottleneck. Four flows sequentially arrive with 500s interval. Each flow sends for 2000s.
@@ -137,12 +151,12 @@
                     <img class="img-responsive" src="img/covergence_BBCC_FIFO.jpg" alt="">
                     <p> TCP shows very unstable behavior and high rate variance</p>
                     <img class="img-responsive" src="img/covergence_TCP_FIFO.jpg" alt="">
-                    <h2 class="section-heading">Flexible Performance Objectives</h2>
+                    <a name="flexible"><h2 class="section-heading">Flexible Performance Objectives</h2></a>
                     <p>
                     PCC has a feature outside the scope of the TCP family: PCC can explicitly express heterogenous data delivery objectives just by plugging in different utility functions, without the need for complex AQM mechanisms, which is necessary to cater to different applications’ objective when using TCP.
                     </p>
                     <p>
-                    For example, “Bufferbloat + FQ + TCP” is better for throughput-hungry applications but “Codel + FQ + TCP” is much better for latency-sensitive interactive applications that have the objective of maximizing its throughput-delay ratio, called the power. To make our point, we take this scenario and show with PCC and a latency sensitive utility function, “Bufferbloat + FQ” and “Codel + FQ” render no power difference for interactive flows and with either, PCC achieves higher power than “TCP + Codel + FQ”. 
+                    For example, “Bufferbloat + FQ + TCP” is better for throughput-hungry applications but “Codel + FQ + TCP” is much better for latency-sensitive interactive applications that have the objective of maximizing its throughput-delay ratio, called the power. To make our point, we take this scenario and show with PCC and a latency sensitive utility function, “Bufferbloat + FQ” and “Codel + FQ” render no power difference for interactive flows and with either, PCC achieves higher power than “TCP + Codel + FQ”.
                     </p>
                     <img class="img-responsive" src="img/codel.jpg" alt="">
 
@@ -155,6 +169,13 @@
     </article>
 
     <hr>
+
+
+<span id="top-link-block" class="hidden">
+    <a href="#readmore" class="well well-sm"  onclick="$('html,body').animate({scrollTop:700},'slow');return false;">
+        <i class="glyphicon glyphicon-chevron-up"></i> Back to Top
+    </a>
+</span><!-- /top-link-block -->
 
     <!-- Footer -->
     <footer>
@@ -195,11 +216,14 @@
 
     <!-- jQuery -->
     <script src="js/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/backtotop.js"></script>
 
     <!-- Custom Theme JavaScript -->
+
     <script src="js/clean-blog.min.js"></script>
 
 </body>
