@@ -171,16 +171,17 @@ The PCC architecture requires only sender-side changes to TCP’s rate control a
                     <img class="img-responsive" src="img/covergence_TCP_FIFO.jpg" alt="">
                     <a name="flexible" href="#flexible"><h2 class="section-heading">Flexible Performance Objectives</h2></a>
                     <p>
-                    PCC has a feature outside the scope of the TCP family: PCC can explicitly express heterogenous data delivery objectives just by plugging in different utility functions, without the need for complex AQM mechanisms, which is necessary to cater to different applications’ objective when using TCP.
+                    PCC has a feature outside the scope of the TCP family: PCC can directly express different data delivery objectives by simply plugging in different utility functions.
+                    Consider an interactive application that wants to get high throughput and low latency, i.e. with the goal of optimizing throughput/latency, defined in <a href="">previous literature</a> as "power". 
                     </p>
                     <p>
-                    Consider an interactive application which cares about throughput and also latency, with the objective of optimizing throughput/latency, known as "power". When using TCP to deliver data and there is large amount of buffer in the network, the performance is bad due to the fact that TCP fills the buffer and causes increased latency. To increase "power", in-network active queue management mechanisms like Codel have to be deployed to actively chop the queue off.
+                    When using TCP to deliver data, users of this interactive application will be very upset by the lagging user experience, because TCP does not know the low latency objective, still aggressively fills the network buffer and causes annoying delay known as bufferbloat. To get better latency, either in-network active queue management mechanisms like Codel or a fork lift change of the protocol stack is needed.
+                    When using PCC, one can simply plug in the data delivery objective throughput/latency as utility function. Then PCC's control learning algorithm will control the sending rate to empirically optimize this utility function.
                     </p>
                     <p>
-                    When using PCC and plugging in the utility function of throughput/latency, PCC will achieve high power, as shown in the following figure, even when there is no AQM present. Moreover, PCC without AQM can achieve even better power than TCP with Codel.
+                    As shown in the figure below, PCC caters to interactive application's objective dramatically better than TCP and even achieves more power than TCP with addiontal in-network AQM.
                     </p>
                     <img class="img-responsive" src="img/codel.jpg" alt="">
-                    <span class="caption text-muted">Figure style is based on "A. Sivaraman, K. Winstein, S. Subramanian, and H. Balakrishnan. No silver bullet: extending SDN to the data plane. HotNets 2013"</span>
 
     <a name="contact" href="#contact"><h2 class="section-heading">Contact</h2></a>
     <p><a href="mailto:modong2@illinois.edu">Mo Dong</a>, <a href="mailto:qli10@illinois.edu">Qingxi Li</a>, <a href="mailto:doronz@gmail.com">Doron Zarchy </a>, <a href="mailto:pbg@illinois.edu">P. Brighten Godfrey</a>, <a href="mailto:schapiram@cs.huji.ac.il">Michael Schapira </a></p>
