@@ -62,7 +62,7 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <p class="text-justify"> The TCP family has failed to achieve consistent high performance in face of the complex production networks: even special TCP variants are often 10x away from optimal performance. We argue this is due to a fundamental architectural deficiency in TCP: hardwiring packet-level event to control responses without understanding the real performance result of its action. </p>
-                <p class="text-justify"> We propose Performance-oriented Congestion Control (PCC), a new architecture that achieves consistent high performance even under challenging conditions. PCC senders continuously observe the connection between their actions and empirically experienced performance, enabling them to consistently adopt actions that result in high performance.
+                <p class="text-justify"> Performance-oriented Congestion Control (PCC) is a new architecture that achieves consistent high performance even under challenging conditions. PCC senders continuously observe the connection between their actions and empirically experienced performance, enabling them to consistently adopt actions that result in high performance.
                 </p>
 
                 <!--<p class="text-center">
@@ -82,24 +82,26 @@
     <a href="#flexible" align="center" class="list-group-item">Flexible Performance Objectives</a>
     <a href="#contact" align="center" class="list-group-item">Contact</a>
 </div>
-<a name="paper"><h2 class="section-heading">Papers</h2></a>
-<a href="http://arxiv.org/pdf/1409.7092v3.pdf">
-    <p style="font-size:20px; margin-bottom:-30px"><strong>PCC: Re-architecting Congestion Control for Consistent High Performance </strong></br>
-    </p>
+<a name="paper" href="#paper"><h2 class="section-heading">Papers</h2></a>
 
-    <p class='text-muted"' style="font-size:17px; margin-bottom:-30px" align="right">Mo Dong*, Qingxi Li*, Doron Zarchy**, P. Brighten Godfrey*, Micheal Schapira**</p>
-    <p class='text-muted"' style="font-size:17px; margin-bottom:-30px" align="right">*University of Illinois at Urbana Champaign</p>
-    <p class='text-muted"' style="font-size:17px; margin-bottom:-30px" align="right">**Hebrew University of Jerusalem</p>
-    </a>
-    <a name="compare"><h2 class="section-heading">Compare PCC and TCP in Action</h2></a>
+    <p style="font-size:21px; margin-bottom:-30px"><strong><a href="http://arxiv.org/pdf/1409.7092v3.pdf"> PCC: Re-architecting Congestion Control for Consistent High Performance </a> </strong> 
+    &nbsp&nbsp
+    <a href="http://speedier.net/doc/2014-11-06-speed_of_light.pdf">[slides]</a>
+    </p>
+    
+    <p class='text-muted' style="font-size:17px; margin-bottom:-30px" align="right">Mo Dong*, Qingxi Li*, Doron Zarchy**, P. Brighten Godfrey*, Micheal Schapira**</p>
+    <p class='text-muted' style="font-size:17px; margin-bottom:-30px" align="right">*University of Illinois at Urbana Champaign</p>
+    <p class='text-muted' style="font-size:17px; margin-bottom:-30px" align="right">**Hebrew University of Jeruselem</p>
+    <p style="font-size:17px; margin-bottom:-30px" align="right"> PCC used a different name BBCC and won<a href="http://www.internet2.edu/products-services/advanced-networking/innovative-application-awards/"> <strong>2013 Internet2 Innovative Application Awards</strong></a></p>
+    <a name="compare" href="#compare"><h2 class="section-heading">Compare PCC and TCP in Action</h2></a>
 <div class="embed-responsive embed-responsive-16by9">
      <iframe class="embed-responsive-item" src="http://www.youtube.com/embed/l0qYs9BL7Zk?feature=player_detailpage"></iframe>
 </div>
 
 
-<a name="usepcc"><h2 class="section-heading">Use PCC</h2></a>
+<a name="usepcc" href="#usepcc"><h2 class="section-heading">Use PCC</h2></a>
 <p>
-The PCC architecture requires only sender-side changes to TCP’s rate control algorithm (with no changes to the host-to-host communication protocol), but this  <a href="https://github.com/modong/pcc"> prototype </a> is implemented in userspace on top of UDP.</p>
+The PCC architecture requires only sender-side changes to TCP’s rate control algorithm (with no changes to the host-to-host communication protocol), but this  <a href="https://github.com/modong/pcc"> prototype</a> is implemented in userspace on top of UDP.</p>
         <a href="https://github.com/modong/pcc">
           <div style="font-size: 100px; margin-top:-40px; margin-bottom:-60px" align="center">
 <i class ="fa fa-github"></i>
@@ -107,7 +109,7 @@ The PCC architecture requires only sender-side changes to TCP’s rate control a
             <p align="center">Goto Github Repo</span>
                   </a>
 
-                  <a name="tcp_arch"><h2 class="section-heading">Why TCP's Architecture is Broken</h2></a>
+                  <a name="tcp_arch" href="#tcp_arch"><h2 class="section-heading">Why TCP's Architecture is Broken</h2></a>
     <img class="img-responsive" src="img/tcp_arch.jpg" alt="">
     <span class="caption text-muted"> The TCP family's hardwired mapping control architecture</span>
     <p class="text-justify">
@@ -115,15 +117,15 @@ The PCC architecture requires only sender-side changes to TCP’s rate control a
     The design rationale behind the hardwired mapping architecture is to make assumptions about the packet-level events. When it sees a packet-level event (e.g. packet loss), TCP assumes the network is in a certain state (e.g. congestion) and tries to optimize performance by triggering a predefined control behavior (e.g. halving window size) as the response to that assumed state. In real networks, assumptions fail but TCP still mechanically carries out the mismatched control response, resulting in severely degraded performance and very unfortunately, without seeing its control action’s actual harm on performance.
     </p>
 
-    <a name="pcc_arch"><h2 class="section-heading">How PCC Works</h2></a>
+    <a name="pcc_arch" href="#pcc_arch"><h2 class="section-heading">How PCC Works</h2></a>
     <img class="img-responsive" src="img/pcc_arch.jpg" alt="">
     <span class="caption text-muted">PCC's control architecture is based on emprical observed performancee</span>
     <p class="text-justify">
     PCC rises from where TCP fails, by associating a control action (change of sending rate) directly with its effect on real performance. For example, when a sender changes its rate to r and gets SACKs after sending at this rate, instead of trigging any predefined control action, PCC aggregates these packet-level events into meaningful performance metrics (throughput, loss rate, latency, etc.) and combines them into a numerical value u via a utility function describing objectives like “high throughput and low loss rate”. With this capability of understanding the real performance result of a particular sending rate, PCC then directly observes and compares different sending rates’ resulting utility and learns how to adjust its rate to improve empirical utility through a learning control algorithm. By avoiding any assumptions about the underlying potentially-complex network, PCC tracks the empirically optimal sending rate and thus achieves consistent high performance.
     </p>
 
-    <a name="performance"><h2 class="section-heading">High Performance Out of the Box</h2></a>
-                    <h3 class="subheading">Big Data Delivery Over Internet</h2>
+    <a name="performance" href="#performance"><h2 class="section-heading">High Performance Out of the Box</h2></a>
+                    <h3 class="subheading">Big Data Delivery Over the Internet</h2>
                     <p>Based on our large-scale experiments over the global commercial Internet, PCC can beat TCP CUBIC (the Linux kernel default) by more than 10X on 44% of the tested sending-receiving pairs. </p>
 
                         <img class="img-responsive" src="img/planet.jpg" alt="">
@@ -134,7 +136,7 @@ The PCC architecture requires only sender-side changes to TCP’s rate control a
                     <h3 class="subheading">Huge Data Delivery over Dedicated Network</h2>
                     <p>
                     Have huge data (10TB/delivery)? Own a fast network? Can provision dedicated network capacity? Don’t waste your capacity!
-                    To test this scenario, we provisioned multiple fully dedicated 800Mbps links across the <a href="www.geni.net">GENI</a> Internet2 backbone. Here is the time comparison to deliver 10TB data.
+                    To test this scenario, we provisioned multiple fully dedicated 800Mbps links across the <a href="www.geni.net">GENI</a> Internet2 backbone. Here is the time to deliver 10TB data in PCC and TCP Illinois.
                     </p>
                         <img class="img-responsive" src="img/GENI_chart.jpg" alt="">
                     <h3 class="subheading"> Satellite Internet</h3>
@@ -144,8 +146,8 @@ The PCC architecture requires only sender-side changes to TCP’s rate control a
                         <img class="img-responsive" src="img/satellite_full.jpg" alt="">
                     <h3 class="subheading"> Rapidly Changing Networks</h3>
                     <p>
-                    We tested TCP and PCC on a network path where available bandwidth, loss rate and RTT, are all changing every 5 seconds, with bandwidth ranging from 10Mbps to 100Mbps, latency from 10ms to 100ms and loss rate from 0% to 1%.
-                    Comapred to TCP variants, PCC tracks the optimal rate closely.
+                    We tested TCP and PCC on a network path where available bandwidth, loss rate and RTT are all changing every 5 seconds, with bandwidth ranging from 10Mbps to 100Mbps, latency from 10ms to 100ms and loss rate from 0% to 1%.
+                    Compared to TCP variants, PCC tracks the optimal rate closely.
                     </p>
                     <img class="img-responsive" src="img/DynamicNetwork.jpg" alt="">
                     <span class="caption text-muted">PCC tracks optimal rate closely</span>
@@ -158,7 +160,7 @@ The PCC architecture requires only sender-side changes to TCP’s rate control a
                         <li>Shallow buffered bottleneck links (up to 45X higher performance, or 13X less buffer to reach 90% throughput)</li>
                         <li>TCP Incast in data centers, where PCC performs similarly to the purpose-built ICTCP.</li>
                         </ul>
-                    <a name="convergence"><h2 class="section-heading">Stable Convergence and Fairness</h2></a>
+                    <a name="convergence" href="#convergence"><h2 class="section-heading">Stable Convergence and Fairness</h2></a>
                     <p>
                     PCC’s control algorithm is selfish in nature. Surprisingly, it can achieve fairness and much more stable convergence than TCP.
                     The following is a typical dumbbell topology convergence experiment, 100Mbps, 30ms latency bottleneck. Four flows sequentially arrive with 500s interval. Each flow sends for 2000s.
@@ -167,7 +169,7 @@ The PCC architecture requires only sender-side changes to TCP’s rate control a
                     <img class="img-responsive" src="img/covergence_BBCC_FIFO.jpg" alt="">
                     <p> TCP shows very unstable behavior.</p>
                     <img class="img-responsive" src="img/covergence_TCP_FIFO.jpg" alt="">
-                    <a name="flexible"><h2 class="section-heading">Flexible Performance Objectives</h2></a>
+                    <a name="flexible" href="#flexible"><h2 class="section-heading">Flexible Performance Objectives</h2></a>
                     <p>
                     PCC has a feature outside the scope of the TCP family: PCC can explicitly express heterogenous data delivery objectives just by plugging in different utility functions, without the need for complex AQM mechanisms, which is necessary to cater to different applications’ objective when using TCP.
                     </p>
@@ -180,8 +182,8 @@ The PCC architecture requires only sender-side changes to TCP’s rate control a
                     <img class="img-responsive" src="img/codel.jpg" alt="">
                     <span class="caption text-muted">Figure style is based on "A. Sivaraman, K. Winstein, S. Subramanian, and H. Balakrishnan. No silver bullet: extending SDN to the data plane. HotNets 2013"</span>
 
-    <a name="contact"><h2 class="section-heading">Contact</h2></a>
-    <p><a href="mailto:modong2@illinois.edu">Mo Dong</a>, <a href="qli10@illinois.edu">Qingxi Li</a>, <a href"mailto:doronz@gmail.com">Doron Zarchy, <a href="mailto:pbg@illinois.edu">P. Brighten Godfrey, <a href="mailto:schapiram@cs.huji.ac.il">Michael Schapira </a></p>
+    <a name="contact" href="#contact"><h2 class="section-heading">Contact</h2></a>
+    <p><a href="mailto:modong2@illinois.edu">Mo Dong</a>, <a href="mailto:qli10@illinois.edu">Qingxi Li</a>, <a href="mailto:doronz@gmail.com">Doron Zarchy </a>, <a href="mailto:pbg@illinois.edu">P. Brighten Godfrey</a>, <a href="mailto:schapiram@cs.huji.ac.il">Michael Schapira </a></p>
 
 
 
