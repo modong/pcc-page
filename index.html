@@ -84,15 +84,14 @@
 </div>
 <a name="paper" href="#paper"><h2 class="section-heading">Papers</h2></a>
 
-    <p style="font-size:21px; margin-bottom:-30px"><strong><a href="http://arxiv.org/pdf/1409.7092v3.pdf"> PCC: Re-architecting Congestion Control for Consistent High Performance </a> </strong> 
-    &nbsp&nbsp
-    <a href="http://speedier.net/doc/2014-11-06-speed_of_light.pdf">[slides]</a>
-    </p>
+<p style="font-size:21px; margin-bottom:-30px"><strong><a href="http://arxiv.org/pdf/1409.7092v3.pdf"> PCC: Re-architecting Congestion Control for Consistent High Performance </a> </strong> </p>
     
-    <p class='text-muted' style="font-size:17px; margin-bottom:-30px" align="right">Mo Dong*, Qingxi Li*, Doron Zarchy**, P. Brighten Godfrey*, Micheal Schapira**</p>
+    <p class='text-muted' style="font-size:17px; margin-bottom:-30px" align="right">Mo Dong*, Qingxi Li*, Doron Zarchy**, P. Brighten Godfrey*, Michael Schapira**</p>
     <p class='text-muted' style="font-size:17px; margin-bottom:-30px" align="right">*University of Illinois at Urbana Champaign</p>
     <p class='text-muted' style="font-size:17px; margin-bottom:-30px" align="right">**Hebrew University of Jeruselem</p>
-    <p style="font-size:17px; margin-bottom:-30px" align="right"> PCC used a different name BBCC and won<a href="http://www.internet2.edu/products-services/advanced-networking/innovative-application-awards/"> <strong>2013 Internet2 Innovative Application Awards</strong></a></p>
+<p style="font-size:21px; margin-bottom:-30px"><strong><a href="http://speedier.net/doc/2014-11-06-speed_of_light.pdf">Slides from talk on cSpeed and PCC  </a></strong></p>
+    <p class='text-muted' style="font-size:17px; margin-bottom:-30px" align="right">November 6, 2014 at MIT Wireless Seminar</p>
+    <p style="font-size:17px; margin-bottom:-30px" align="left"> This work is supported by the National Science Foundation and won a 2013 Internet2 Innovative Application Award (under the name BBCC)</p>
     <a name="compare" href="#compare"><h2 class="section-heading">Compare PCC and TCP in Action</h2></a>
 <div class="embed-responsive embed-responsive-16by9">
      <iframe class="embed-responsive-item" src="http://www.youtube.com/embed/l0qYs9BL7Zk?feature=player_detailpage"></iframe>
@@ -110,11 +109,14 @@ The PCC architecture requires only sender-side changes to TCP’s rate control a
                   </a>
 
                   <a name="tcp_arch" href="#tcp_arch"><h2 class="section-heading">Why TCP's Architecture is Broken</h2></a>
+
+                  <p class="text-justify">Though using different control algorithms, all TCP's variants share the same <i>hardwired mapping</i> rate control architecture: hardwiring certain <i>predefined packet-level events </i> to certain <i>predefined control responses</i></p>
     <img class="img-responsive" src="img/tcp_arch.jpg" alt="">
     <span class="caption text-muted"> The TCP family's hardwired mapping control architecture</span>
     <p class="text-justify">
-    Though using different control algorithms, all TCP's variants share the same <i>hardwired mapping</i> rate control architecture: hardwiring certain <i>predefined packet-level events </i> to certain <i>predefined control responses</i>.
-    The design rationale behind the hardwired mapping architecture is to make assumptions about the packet-level events. When it sees a packet-level event (e.g. packet loss), TCP assumes the network is in a certain state (e.g. congestion) and tries to optimize performance by triggering a predefined control behavior (e.g. halving window size) as the response to that assumed state. In real networks, assumptions fail but TCP still mechanically carries out the mismatched control response, resulting in severely degraded performance and very unfortunately, without seeing its control action’s actual harm on performance.
+    
+    The design rationale behind the hardwired mapping architecture is to make assumptions about the packet-level events. When it sees a packet-level event (e.g. packet loss), TCP assumes the network is in a certain state (e.g. congestion) and tries to optimize performance by triggering a predefined control behavior (e.g. halving window size) as the response to that assumed state. 
+  But real networks are complex, with bandwidth varying by 10,000x, virtualization, AQMs, middleboxes and software routers, shallow queues and bufferbloat, congestion loss and random loss.  TCP's assumptions fail but it still mechanically carries out the mismatched control response, resulting in severely degraded performance and very unfortunately, without seeing its control action’s actual harm on performance.
     </p>
 
     <a name="pcc_arch" href="#pcc_arch"><h2 class="section-heading">How PCC Works</h2></a>
@@ -151,7 +153,7 @@ The PCC architecture requires only sender-side changes to TCP’s rate control a
                     </p>
                     <img class="img-responsive" src="img/DynamicNetwork.jpg" alt="">
                     <span class="caption text-muted">PCC tracks optimal rate closely</span>
-                    <h3 class="subheading"> More in paper</h3>
+                    <h3 class="subheading"> More in the paper</h3>
 
                     <p>Our <a href="http://arxiv.org/abs/1409.7092">paper</a> details further results showing PCC delivers high performance across a range of challenging conditions.  In addition to those above, we test:</p>
                     <ul>
